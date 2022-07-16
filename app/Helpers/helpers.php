@@ -17,7 +17,7 @@ if (!function_exists('sendMail')) {
         $result = Mail::send('email.contact', $input_arr, function ($message) use ($input_arr) {
             $message->to($input_arr['email'], 'Contact US')
                 ->subject($input_arr['subject']);
-            $message->from('no-reply@geoteam', 'Laravel CSV Upload Notification');
+            $message->from('no-reply@example.com', 'Laravel CSV Upload Notification');
         });
         if ($result) {
             return true;
