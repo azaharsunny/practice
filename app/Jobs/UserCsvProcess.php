@@ -43,10 +43,10 @@ class UserCsvProcess implements ShouldQueue
                 }
                 //dd('success');
                 // mail function here
-                $name = "Md Azaharuddin";
-                $name1 = "Sunny";
-                $email = "sunnyazahar@gmail.com";
-                $email1 = "azaharsunny@gmail.com";
+                $name = "Rahul";
+                $name1 = "Akshara";
+                $email = "rahul@protracked.in";
+                $email1 = "akshara@protracked.in";
                 $message = "Your data has been successfully submitted.";
                 $subject = "Laravel test";
                 sendMail($name, $email,  rand(1111111111,9999999999), $message, $subject);
