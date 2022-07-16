@@ -42,6 +42,8 @@ class UserController extends Controller
                         $checkSpecialChar_userName .= " row " . $x. " and";
                     } elseif (preg_match('/[\^£$%&*()}{@#~?><>,|=_+¬-]/', $line[2])) {
                         $checkSpecialChar_userAddress .= " row " . $x. " and";
+                    }elseif (count($line) != 3){
+                        $colCount = "Number of columns should be 3";
                     }
                 }
 
@@ -68,6 +70,10 @@ class UserController extends Controller
                 }
                 if ($checkBlankData_userAddress !=''){
                     $error[] = "User Address blank at ".rtrim($checkBlankData_userAddress,"and");
+                }
+                
+                if ($colCount !=''){
+                    $error[] = $colCount;
                 }
 
                 if (sizeof($error) == 0) {
