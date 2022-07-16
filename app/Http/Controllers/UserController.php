@@ -11,12 +11,10 @@ class UserController extends Controller
     public function import(Request $request)
     {
         try {
-            //print_r($request->file());
-            // $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
             $csvMimes = array('application/x-csv', 'text/x-csv', 'text/csv', 'application/csv');
             if (!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)) {
                 $csvFile = fopen($_FILES['file']['tmp_name'], 'r');
-                fgetcsv($csvFile, 'r');
+                fgetcsv($csvFile);
                 $x = 0;
                 $error = [];
                 /*** Check special char  ***/
@@ -29,7 +27,7 @@ class UserController extends Controller
                 $checkBlankData_userName = '';
                 $checkBlankData_userAddress = '';
 
-                while (($line = fgetcsv($csvFile, 'r')) !== FALSE) {
+                while (($line = fgetcsv($csvFile)) !== FALSE) {
                     $x++;
                     // Get row data
                     if ($line[0] == '') {
@@ -77,7 +75,7 @@ class UserController extends Controller
                     $csvData = fopen($_FILES['file']['tmp_name'], 'r');
                     $temp = [];
                     $y = 0;
-                    while (($newline = fgetcsv($csvData, 'r')) !== FALSE) {
+                    while (($newline = fgetcsv($csvData)) !== FALSE) {
                         $y++;
                         if ($y > 1) {
                             $arr['user_code'] = $newline[0];
